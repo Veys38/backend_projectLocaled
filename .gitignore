@@ -1,0 +1,26 @@
+# Maven
+/target
+!.mvn/wrapper/maven-wrapper.jar
+.mvn/wrapper/maven-wrapper.properties
+
+# IntelliJ IDEA
+.idea
+*.iml
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+
+# Docker
+*.pid
+docker-compose.override.yml
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# Other
+node_modules/
