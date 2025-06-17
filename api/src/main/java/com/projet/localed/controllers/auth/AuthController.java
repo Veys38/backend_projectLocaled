@@ -1,22 +1,43 @@
 package com.projet.localed.controllers.auth;
 
+
+import com.projet.localed.entities.User;
+import com.projet.localed.models.security.dtos.UserSessionDTO;
+import com.projet.localed.models.security.dtos.UserTokenDTO;
+import com.projet.localed.models.security.forms.LoginForm;
+import com.projet.localed.models.security.forms.RegisterForm;
+import com.projet.localed.services.security.AuthService;
 import com.projet.localed.utils.jwt.JwtUtil;
+
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/auth")
+@CrossOrigin("http://localhost:4200")
 public class AuthController {
 
+    private final AuthService authService;
     private final JwtUtil jwtUtil;
 
-    @PostMapping("/login")
-    public String login(@RequestParam String username) {
-        return jwtUtil.generateToken(username);
+    @PreAuthorize("isAnonymous()")
+    @PostMapping("/register")
+    public ResponseEntity<Void> register(@Valid @RequestBody RegisterForm form) {
+        authService.register(form.toUser());
+        return ResponseEntity.noContent().build();
     }
 
+    @PreAuthorize("isAnonymous()")
+    @PostMapping("/login")
+    public ResponseEntity<UserTokenDTO> login(@Valid @RequestBody LoginForm form) {
+        User user = authService.login(form.email(), form.password());
+        String token = jwtUtil.generateAccessToken(user);
+        UserSessionDTO session = UserSessionDTO.fromUser(user);
+        return ResponseEntity.ok(new UserTokenDTO(session, token));
+    }
 }

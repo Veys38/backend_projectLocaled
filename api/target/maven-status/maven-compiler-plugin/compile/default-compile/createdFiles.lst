@@ -1,2 +1,3 @@
 com/projet/localed/ApiApplication.class
+com/projet/localed/controllers/auth/AuthController.class
 com/projet/localed/controllers/HomeController.class

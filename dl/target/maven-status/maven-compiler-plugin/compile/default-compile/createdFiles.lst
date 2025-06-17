@@ -1,0 +1,13 @@
+com/projet/localed/entities/Review.class
+com/projet/localed/entities/Report.class
+com/projet/localed/entities/Notification.class
+com/projet/localed/entities/Message.class
+com/projet/localed/listeners/MessageEntityListener.class
+com/projet/localed/entities/Image.class
+com/projet/localed/entities/Address.class
+com/projet/localed/entities/Favorite.class
+com/projet/localed/listeners/ImageEntityListener.class
+com/projet/localed/entities/Category.class
+com/projet/localed/BaseEntity.class
+com/projet/localed/entities/Ad.class
+com/projet/localed/entities/User.class
