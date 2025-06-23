@@ -15,7 +15,7 @@ import lombok.*;
 @AllArgsConstructor
 @ToString
 @EqualsAndHashCode(callSuper = true)
-public class Report extends BaseEntity {
+public class Report extends BaseEntity<Long> {
 
     @Column(length = 1000)
     private String reason;

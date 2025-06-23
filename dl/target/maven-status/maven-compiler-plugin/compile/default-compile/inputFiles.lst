@@ -8,6 +8,8 @@
 /Users/veysel/Desktop/Programmation/projet_localed/backend_projectLocaled/backend_projectLocaled/dl/src/main/java/com/projet/localed/BaseEntity.java
 /Users/veysel/Desktop/Programmation/projet_localed/backend_projectLocaled/backend_projectLocaled/dl/src/main/java/com/projet/localed/entities/Review.java
 /Users/veysel/Desktop/Programmation/projet_localed/backend_projectLocaled/backend_projectLocaled/dl/src/main/java/com/projet/localed/entities/Ad.java
+/Users/veysel/Desktop/Programmation/projet_localed/backend_projectLocaled/backend_projectLocaled/dl/src/main/java/com/projet/localed/enums/UserRole.java
 /Users/veysel/Desktop/Programmation/projet_localed/backend_projectLocaled/backend_projectLocaled/dl/src/main/java/com/projet/localed/entities/Favorite.java
 /Users/veysel/Desktop/Programmation/projet_localed/backend_projectLocaled/backend_projectLocaled/dl/src/main/java/com/projet/localed/entities/Notification.java
 /Users/veysel/Desktop/Programmation/projet_localed/backend_projectLocaled/backend_projectLocaled/dl/src/main/java/com/projet/localed/entities/Report.java
+/Users/veysel/Desktop/Programmation/projet_localed/backend_projectLocaled/backend_projectLocaled/dl/src/main/java/com/projet/localed/enums/UserStatus.java

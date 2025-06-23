@@ -6,8 +6,10 @@ com/projet/localed/listeners/MessageEntityListener.class
 com/projet/localed/entities/Image.class
 com/projet/localed/entities/Address.class
 com/projet/localed/entities/Favorite.class
+com/projet/localed/enums/UserRole.class
 com/projet/localed/listeners/ImageEntityListener.class
 com/projet/localed/entities/Category.class
 com/projet/localed/BaseEntity.class
 com/projet/localed/entities/Ad.class
+com/projet/localed/enums/UserStatus.class
 com/projet/localed/entities/User.class

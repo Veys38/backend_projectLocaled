@@ -14,7 +14,7 @@ import lombok.*;
 @AllArgsConstructor
 @ToString
 @EqualsAndHashCode(callSuper = true)
-public class Image extends BaseEntity {
+public class Image extends BaseEntity<Long> {
 
     @Column(nullable = false)
     private String url;

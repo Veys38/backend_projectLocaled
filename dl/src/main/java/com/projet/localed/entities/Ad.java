@@ -17,7 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 @ToString
 @EqualsAndHashCode(callSuper = true)
-public class Ad extends BaseEntity {
+public class Ad extends BaseEntity<Long> {
 
     @Column(nullable = false, length = 50)
     private String title;

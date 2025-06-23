@@ -2,6 +2,7 @@ package com.projet.localed.utils.jwt;
 
 import io.jsonwebtoken.*;
 import jakarta.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
@@ -11,17 +12,18 @@ import java.util.Date;
 @Component
 public class JwtUtil {
 
-    private final byte[] secret = "Yabadabadoooooooooooooooooooooooooooooo".getBytes(); // Clé secrète
+    @Value("${jwt.secret}")
+    private String secret;
 
     private SecretKey key;
     private JwtParser parser;
 
     private final long accessExpiration = 1000 * 60 * 60 * 24; // 24h
-    private final long refreshExpiration = 1000L * 60 * 60 * 24 * 30; // 30 jours
+    private final long refreshExpiration = 1000L * 60 * 60 * 24 * 30; // 30j
 
     @PostConstruct
     public void init() {
-        key = new SecretKeySpec(secret, "HmacSHA256");
+        key = new SecretKeySpec(secret.getBytes(), "HmacSHA256");
         parser = Jwts.parserBuilder().setSigningKey(key).build();
     }
 
@@ -47,14 +49,22 @@ public class JwtUtil {
 
     public boolean isValid(String token) {
         try {
-            parser.parseClaimsJws(token);
-            return true;
+            Claims claims = parser.parseClaimsJws(token).getBody();
+            return claims.getExpiration().after(new Date());
         } catch (JwtException e) {
             return false;
         }
     }
 
-    public String getEmail(String token) {
+    public String getUsername(String token) {
         return parser.parseClaimsJws(token).getBody().getSubject();
+    }
+
+    public Long getUserId(String token) {
+        return parser.parseClaimsJws(token).getBody().get("id", Long.class);
+    }
+
+    public String getRole(String token) {
+        return parser.parseClaimsJws(token).getBody().get("role", String.class);
     }
 }

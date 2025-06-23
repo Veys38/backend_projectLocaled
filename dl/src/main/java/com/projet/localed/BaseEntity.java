@@ -9,11 +9,11 @@ import java.time.LocalDateTime;
 @NoArgsConstructor @AllArgsConstructor
 @ToString @EqualsAndHashCode
 @MappedSuperclass
-public abstract class BaseEntity {
+public abstract class BaseEntity<T> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private T id;
 
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;

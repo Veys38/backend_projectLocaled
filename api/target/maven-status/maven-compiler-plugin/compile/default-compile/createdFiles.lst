@@ -1,3 +1,7 @@
 com/projet/localed/ApiApplication.class
+com/projet/localed/models/security/forms/LoginForm.class
 com/projet/localed/controllers/auth/AuthController.class
+com/projet/localed/models/security/forms/RegisterForm.class
 com/projet/localed/controllers/HomeController.class
+com/projet/localed/models/security/dtos/UserSessionDTO.class
+com/projet/localed/models/security/dtos/UserTokenDTO.class

@@ -12,7 +12,7 @@ import lombok.*;
 @AllArgsConstructor
 @ToString
 @EqualsAndHashCode(callSuper = true)
-public class Review extends BaseEntity {
+public class Review extends BaseEntity<Long> {
 
     private int rating;
 

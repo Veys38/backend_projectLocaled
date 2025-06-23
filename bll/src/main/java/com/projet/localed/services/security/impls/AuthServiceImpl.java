@@ -2,15 +2,21 @@ package com.projet.localed.services.security.impls;
 
 import com.projet.localed.entities.User;
 
+import com.projet.localed.enums.UserRole;
+import com.projet.localed.exceptions.user.BadCredentialsException;
+import com.projet.localed.exceptions.user.UserNotFoundException;
 import com.projet.localed.repositories.UserRepository;
 import com.projet.localed.services.security.AuthService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Primary;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+
 @Service
+@Primary
 @RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService {
 
@@ -23,7 +29,7 @@ public class AuthServiceImpl implements AuthService {
             throw new UserNotFoundException(HttpStatus.NOT_ACCEPTABLE, "Email déjà utilisé.");
         }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRole(Role.USER);
+        user.setRole(UserRole.USER);
         userRepository.save(user);
     }
 

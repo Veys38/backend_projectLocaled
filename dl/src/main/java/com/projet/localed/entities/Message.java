@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @ToString
 @EqualsAndHashCode(callSuper = true)
 @EntityListeners(MessageEntityListener.class)
-public class Message extends BaseEntity {
+public class Message extends BaseEntity<Long> {
 
     @Column(nullable = false, length = 500)
     private String content;

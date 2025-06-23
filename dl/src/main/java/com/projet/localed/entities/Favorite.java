@@ -17,7 +17,7 @@ import lombok.*;
 @AllArgsConstructor
 @ToString
 @EqualsAndHashCode(callSuper = true)
-public class Favorite extends BaseEntity {
+public class Favorite extends BaseEntity<Long> {
 
     @ManyToOne(optional = false)
     private User user;

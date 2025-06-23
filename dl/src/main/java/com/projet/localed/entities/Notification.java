@@ -15,7 +15,7 @@ import lombok.*;
 @AllArgsConstructor
 @ToString
 @EqualsAndHashCode(callSuper = true)
-public class Notification extends BaseEntity {
+public class Notification extends BaseEntity<Long> {
 
     @Column(length = 1000)
     private String message;

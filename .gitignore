@@ -24,3 +24,6 @@ docker-compose.override.yml
 
 # Other
 node_modules/
+.env
+
+
