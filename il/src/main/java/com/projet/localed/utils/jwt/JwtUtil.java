@@ -38,14 +38,16 @@ public class JwtUtil {
                 .compact();
     }
 
-    public String generateRefreshToken(String email) {
+    public String generateRefreshToken(String email, Long id) {
         return Jwts.builder()
                 .setSubject(email)
+                .claim("id", id)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + refreshExpiration))
                 .signWith(key)
                 .compact();
     }
+
 
     public boolean isValid(String token) {
         try {
@@ -56,7 +58,7 @@ public class JwtUtil {
         }
     }
 
-    public String getUsername(String token) {
+    public String extractUsername(String token) {
         return parser.parseClaimsJws(token).getBody().getSubject();
     }
 

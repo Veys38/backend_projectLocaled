@@ -1,9 +1,6 @@
 package com.projet.localed.configs;
 
 import com.projet.localed.filters.JwtFilter;
-import com.projet.localed.services.security.AuthService;
-import com.projet.localed.utils.jwt.JwtUtil;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 
 import org.springframework.context.annotation.Configuration;
@@ -27,16 +24,6 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @EnableMethodSecurity
 public class SecurityConfig {
 
-    @Bean
-    public UserDetailsService userDetailsService(AuthService authService) {
-        return authService::loadUserByUsername;
-    }
-
-    @Bean
-    public JwtFilter jwtFilter(JwtUtil jwtUtil, @Qualifier("userDetailsService") UserDetailsService uds) {
-        return new JwtFilter(jwtUtil, uds);
-    }
-
 
     @Bean
     public SecurityFilterChain securityFilterChain(
@@ -49,7 +36,11 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/**", "/", "/favicon.ico").permitAll()
+                        .requestMatchers("/auth/**",
+                                "/",
+                                "/favicon.ico",
+                                "/swagger-ui/**",
+                                "/v3/api-docs/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .authenticationProvider(authenticationProvider)

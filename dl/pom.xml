@@ -55,6 +55,7 @@
                             <version>1.18.38</version>
                         </path>
                     </annotationProcessorPaths>
+                    <release>${java.version}</release>
                 </configuration>
             </plugin>
         </plugins>

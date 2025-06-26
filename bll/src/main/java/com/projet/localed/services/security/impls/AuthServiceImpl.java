@@ -50,4 +50,13 @@ public class AuthServiceImpl implements AuthService {
                 () -> new UserNotFoundException(HttpStatus.NOT_FOUND, email)
         );
     }
+
+    @Override
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> new UserNotFoundException(HttpStatus.NOT_FOUND, "Utilisateur non trouvé"));
+    }
+
+
+
 }

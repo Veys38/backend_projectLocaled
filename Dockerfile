@@ -1,5 +1,5 @@
 # Étape 1 : Build avec Java 23 et Maven
-FROM maven:3.9-eclipse-temurin-23 AS build
+FROM maven:3.9-eclipse-temurin-21 AS build
 
 WORKDIR /app
 
@@ -18,7 +18,7 @@ COPY . .
 RUN mvn clean install -pl api -am -DskipTests
 
 # Étape 2 : Runtime avec Java 23 seulement
-FROM eclipse-temurin:23-jre
+FROM eclipse-temurin:21-jre
 
 WORKDIR /app
 
