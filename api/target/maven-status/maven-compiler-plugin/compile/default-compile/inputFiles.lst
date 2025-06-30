@@ -1,7 +1,15 @@
+/Users/veysel/Desktop/Programmation/projet_localed/backend_projectLocaled/backend_projectLocaled/api/src/main/java/com/projet/localed/controllers/ad/AdController.java
+/Users/veysel/Desktop/Programmation/projet_localed/backend_projectLocaled/backend_projectLocaled/api/src/main/java/com/projet/localed/controllers/users/UserController.java
+/Users/veysel/Desktop/Programmation/projet_localed/backend_projectLocaled/backend_projectLocaled/api/src/main/java/com/projet/localed/mappers/UserMapper.java
 /Users/veysel/Desktop/Programmation/projet_localed/backend_projectLocaled/backend_projectLocaled/api/src/main/java/com/projet/localed/models/security/forms/LoginForm.java
 /Users/veysel/Desktop/Programmation/projet_localed/backend_projectLocaled/backend_projectLocaled/api/src/main/java/com/projet/localed/models/security/dtos/UserSessionDTO.java
 /Users/veysel/Desktop/Programmation/projet_localed/backend_projectLocaled/backend_projectLocaled/api/src/main/java/com/projet/localed/models/security/dtos/UserTokenDTO.java
+/Users/veysel/Desktop/Programmation/projet_localed/backend_projectLocaled/backend_projectLocaled/api/src/main/java/com/projet/localed/models/ad/AdDTO.java
+/Users/veysel/Desktop/Programmation/projet_localed/backend_projectLocaled/backend_projectLocaled/api/src/main/java/com/projet/localed/mappers/AdMapper.java
+/Users/veysel/Desktop/Programmation/projet_localed/backend_projectLocaled/backend_projectLocaled/api/src/main/java/com/projet/localed/models/users/UserDTO.java
 /Users/veysel/Desktop/Programmation/projet_localed/backend_projectLocaled/backend_projectLocaled/api/src/main/java/com/projet/localed/controllers/HomeController.java
+/Users/veysel/Desktop/Programmation/projet_localed/backend_projectLocaled/backend_projectLocaled/api/src/main/java/com/projet/localed/models/users/UserForm.java
 /Users/veysel/Desktop/Programmation/projet_localed/backend_projectLocaled/backend_projectLocaled/api/src/main/java/com/projet/localed/ApiApplication.java
+/Users/veysel/Desktop/Programmation/projet_localed/backend_projectLocaled/backend_projectLocaled/api/src/main/java/com/projet/localed/models/ad/AdForm.java
 /Users/veysel/Desktop/Programmation/projet_localed/backend_projectLocaled/backend_projectLocaled/api/src/main/java/com/projet/localed/controllers/auth/AuthController.java
 /Users/veysel/Desktop/Programmation/projet_localed/backend_projectLocaled/backend_projectLocaled/api/src/main/java/com/projet/localed/models/security/forms/RegisterForm.java

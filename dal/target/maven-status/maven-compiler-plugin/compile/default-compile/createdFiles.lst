@@ -1,1 +1,3 @@
 com/projet/localed/repositories/UserRepository.class
+com/projet/localed/repositories/CategoryRepository.class
+com/projet/localed/repositories/AdRepository.class
