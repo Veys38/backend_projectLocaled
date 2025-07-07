@@ -10,4 +10,6 @@ public interface UserService {
     User create(User user);
     void update(Long id, User user);
     void delete(Long id);
+    void verifyEmail(String token);
+
 }

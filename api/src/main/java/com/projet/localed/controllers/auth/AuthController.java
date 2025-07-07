@@ -102,6 +102,11 @@ public class AuthController {
         return ResponseEntity.ok(new UserTokenDTO(session, newAccessToken));
     }
 
+    @GetMapping("/verify-email")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void verifyEmail(@RequestParam String token) {
+        authService.verifyEmail(token);
+    }
 
 
 

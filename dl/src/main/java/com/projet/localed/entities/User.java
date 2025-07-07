@@ -8,6 +8,7 @@ import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -51,6 +52,13 @@ public class User extends BaseEntity<Long> implements UserDetails {
     @Enumerated(EnumType.STRING)
     private UserStatus status = UserStatus.ACTIVE;
 
+    @Column(unique = true)
+    private String confirmationToken;
+
+    private LocalDateTime confirmationTokenCreatedAt;
+
+    @Column(nullable = false)
+    private boolean enabled = false;
 
     // Les relations
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)

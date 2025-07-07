@@ -8,6 +8,7 @@ import com.projet.localed.services.users.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,6 +22,7 @@ public class UserController {
     private final UserMapper userMapper;
 
     @GetMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public List<UserDTO> getAll() {
         return userService.getAll().stream()
                 .map(userMapper::toDTO)
@@ -28,6 +30,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public UserDTO getById(@PathVariable Long id) {
         return userMapper.toDTO(userService.getById(id));
     }
@@ -51,4 +54,6 @@ public class UserController {
     public void delete(@PathVariable Long id) {
         userService.delete(id);
     }
+
+
 }

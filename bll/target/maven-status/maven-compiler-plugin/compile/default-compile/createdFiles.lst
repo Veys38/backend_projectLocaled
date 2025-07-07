@@ -5,5 +5,8 @@ com/projet/localed/services/security/AuthService.class
 com/projet/localed/exceptions/user/UserNotFoundException.class
 com/projet/localed/services/users/UserService.class
 com/projet/localed/services/users/impls/UserServiceImpl.class
+com/projet/localed/services/email/impls/EmailServiceImpl.class
+com/projet/localed/services/email/EmailService.class
+com/projet/localed/exceptions/user/EmailAlreadyVerifiedException.class
 com/projet/localed/exceptions/user/BadCredentialsException.class
 com/projet/localed/services/ad/AdService.class

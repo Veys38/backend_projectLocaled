@@ -5,6 +5,7 @@ import com.projet.localed.enums.UserRole;
 import com.projet.localed.exceptions.user.BadCredentialsException;
 import com.projet.localed.exceptions.user.UserNotFoundException;
 import com.projet.localed.repositories.UserRepository;
+import com.projet.localed.services.users.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -18,7 +19,8 @@ class AuthServiceImplTest {
     private final UserRepository userRepository = mock(UserRepository.class);
     private final PasswordEncoder passwordEncoder = mock(PasswordEncoder.class);
 
-    private final AuthServiceImpl authService = new AuthServiceImpl(userRepository, passwordEncoder);
+    private final UserService userService = mock(UserService.class);
+    private final AuthServiceImpl authService = new AuthServiceImpl(userRepository, passwordEncoder, userService);
 
     @Test
     void login_shouldReturnUser_whenCredentialsAreCorrect() {
@@ -88,7 +90,8 @@ class AuthServiceImplTest {
         // Assert
         assertEquals("encoded", user.getPassword());
         assertEquals(UserRole.USER, user.getRole());
-        verify(userRepository, times(1)).save(user);
+        when(userService.create(user)).thenReturn(user);
+        verify(userService, times(1)).create(user);
     }
 
     @Test

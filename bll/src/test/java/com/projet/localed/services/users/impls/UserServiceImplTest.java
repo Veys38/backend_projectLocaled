@@ -5,6 +5,8 @@ import com.projet.localed.enums.UserRole;
 import com.projet.localed.enums.UserStatus;
 import com.projet.localed.exceptions.user.UserNotFoundException;
 import com.projet.localed.repositories.UserRepository;
+import com.projet.localed.services.email.EmailService;
+import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -19,11 +21,14 @@ class UserServiceImplTest {
 
     private UserRepository userRepository;
     private UserServiceImpl userService;
+    private EmailService emailService; // nouveau champ
+
 
     @BeforeEach
     void setUp() {
         userRepository = mock(UserRepository.class);
-        userService = new UserServiceImpl(userRepository);
+        emailService = mock(EmailService.class);
+        userService = new UserServiceImpl(userRepository, emailService);
     }
 
     @Test
@@ -78,4 +83,28 @@ class UserServiceImplTest {
 
         verify(userRepository, times(1)).findById(99L);
     }
+
+    @Test
+    void verifyEmail_shouldEnableUser_whenTokenIsValid() {
+        // Arrange
+        User user = new User();
+        user.setUsername("test");
+        user.setEmail("test@mail.com");
+        user.setPassword("pass");
+        user.setRole(UserRole.USER);
+        user.setStatus(UserStatus.ACTIVE);
+        user.setConfirmationToken("abc123");
+        user.setEnabled(false);
+
+        when(userRepository.findByConfirmationToken("abc123")).thenReturn(Optional.of(user));
+
+        // Act
+        userService.verifyEmail("abc123");
+
+        // Assert
+        assertThat(user.isEnabled()).isTrue();
+        assertThat(user.getConfirmationToken()).isNull();
+        verify(userRepository).save(user);
+    }
+
 }

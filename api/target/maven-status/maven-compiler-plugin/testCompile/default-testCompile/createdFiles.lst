@@ -1,2 +1,3 @@
 com/projet/localed/controllers/auth/AuthControllerTest.class
 com/projet/localed/controllers/users/UserControllerTest.class
+com/projet/localed/controllers/ad/AdControllerTest.class
