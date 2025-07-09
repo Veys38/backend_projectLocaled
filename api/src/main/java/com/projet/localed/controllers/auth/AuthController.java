@@ -9,6 +9,10 @@ import com.projet.localed.models.security.forms.RegisterForm;
 import com.projet.localed.services.security.AuthService;
 import com.projet.localed.utils.jwt.JwtUtil;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -20,6 +24,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+@Tag(name = "Authentification", description = "Inscription, connexion, tokens, email")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/auth")
@@ -29,6 +34,11 @@ public class AuthController {
     private final AuthService authService;
     private final JwtUtil jwtUtil;
 
+    @Operation(
+            summary = "Enregistrer un nouvel utilisateur",
+            description = "Crée un compte utilisateur avec email, username et mot de passe"
+    )
+    @ApiResponse(responseCode = "204", description = "Utilisateur enregistré avec succès")
     @PreAuthorize("isAnonymous()")
     @PostMapping("/register")
     public ResponseEntity<Void> register(@Valid @RequestBody RegisterForm form) {
@@ -36,6 +46,11 @@ public class AuthController {
         return ResponseEntity.noContent().build();
     }
 
+    @Operation(
+            summary = "Connexion d’un utilisateur",
+            description = "Retourne un token d’accès et refresh token si les identifiants sont corrects"
+    )
+    @ApiResponse(responseCode = "200", description = "Connexion réussie")
     @PostMapping("/login")
     @PreAuthorize("isAnonymous()")
     public ResponseEntity<UserTokenDTO> login(@Valid @RequestBody LoginForm form, HttpServletResponse response) {
@@ -62,6 +77,14 @@ public class AuthController {
         return ResponseEntity.ok(new UserTokenDTO(session, accessToken));
     }
 
+    @Operation(
+            summary = "Rafraîchir les tokens JWT",
+            description = "Vérifie le refresh token dans le cookie et renvoie un nouveau access token + refresh token"
+    )
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Tokens rafraîchis avec succès"),
+            @ApiResponse(responseCode = "401", description = "Refresh token invalide ou absent")
+    })
     @PostMapping("/refresh-token")
     public ResponseEntity<UserTokenDTO> refreshToken(HttpServletRequest request, HttpServletResponse response) {
 
@@ -102,6 +125,13 @@ public class AuthController {
         return ResponseEntity.ok(new UserTokenDTO(session, newAccessToken));
     }
 
+    @Operation(
+            summary = "Vérifier l’email avec un token",
+            description = "Active le compte utilisateur correspondant au token envoyé par mail"
+    )
+    @ApiResponse(responseCode = "204", description = "Email confirmé avec succès")
+    @ApiResponse(responseCode = "400", description = "Le compte est déjà activé")
+    @ApiResponse(responseCode = "404", description = "Token invalide")
     @GetMapping("/verify-email")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void verifyEmail(@RequestParam String token) {

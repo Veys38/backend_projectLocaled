@@ -9,6 +9,7 @@ import com.projet.localed.models.ad.AdForm;
 import com.projet.localed.repositories.CategoryRepository;
 import com.projet.localed.repositories.UserRepository;
 import com.projet.localed.services.ad.AdService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Tag(name = "Annonces", description = "CRUD des annonces")
 @RestController
 @RequestMapping("/ads")
 @RequiredArgsConstructor
